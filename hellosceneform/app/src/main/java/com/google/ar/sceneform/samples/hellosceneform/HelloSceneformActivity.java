@@ -111,7 +111,7 @@ public class HelloSceneformActivity extends AppCompatActivity {
               Vector3 base = new Vector3((float) x * CENTER_SCALE, BASE_HEIGHT, (float) z * CENTER_SCALE);
 
               // Render floor
-              if (grid[i] == 0 || grid[i] == 2) {
+              if (grid[i] == 0) {
                   Texture.builder()
                           .setSource(getApplicationContext(), R.drawable.floor_texture)
                           .build()
