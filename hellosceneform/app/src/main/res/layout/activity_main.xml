@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.google.ar.sceneform.samples.hellosceneform.MainActivity"
+    android:weightSum="1"
+    android:orientation="vertical"
+    >
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/tareign"
+        android:textSize="45sp"
+        android:textAlignment="center"
+        android:textColor="#6200EE"
+        android:gravity ="center"
+        />
+    <TextView
+        android:layout_marginTop="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/build_your_own_terrain_and_project_onto_a_flat_surface"
+        android:textSize="25sp"
+        android:textAlignment="center"
+        android:textColor="#3700B3"
+        android:gravity ="center"
+        />
+    <Button
+        android:id="@+id/createButton"
+        android:layout_marginTop="30dp"
+        android:layout_gravity="center_horizontal|center_vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/create_a_new_grid"
+        android:background="#03DAC6"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        />
+    <Button
+        android:id="@+id/loadButton"
+        android:layout_marginTop="30dp"
+        android:layout_gravity="center_horizontal|center_vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/load_an_old_grid"
+        android:background="#018786"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        />
+
+</LinearLayout>

@@ -18,6 +18,7 @@ package com.google.ar.sceneform.samples.hellosceneform;
 import android.app.Activity;
 import android.app.ActivityManager;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Build.VERSION_CODES;
 import android.os.Bundle;
@@ -26,13 +27,11 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.widget.Toast;
 
-import com.google.android.filament.TextureSampler;
 import com.google.ar.core.Anchor;
 import com.google.ar.core.HitResult;
 import com.google.ar.core.Plane;
 import com.google.ar.sceneform.AnchorNode;
 import com.google.ar.sceneform.Node;
-import com.google.ar.sceneform.rendering.Color;
 import com.google.ar.sceneform.rendering.MaterialFactory;
 import com.google.ar.sceneform.rendering.ShapeFactory;
 import com.google.ar.sceneform.rendering.ModelRenderable;
@@ -48,7 +47,7 @@ public class HelloSceneformActivity extends AppCompatActivity {
     private static final String TAG = HelloSceneformActivity.class.getSimpleName();
     private static final double MIN_OPENGL_VERSION = 3.0;
 
-    private int[] grid = {
+    /*private int[] grid = {
             1,1,1,1,1, 1,1,1,1,1,
             1,0,0,0,0, 0,0,0,0,1,
             1,0,0,0,0, 0,0,0,0,1,
@@ -59,7 +58,7 @@ public class HelloSceneformActivity extends AppCompatActivity {
             1,0,0,0,0, 0,0,0,0,1,
             1,0,0,0,0, 0,0,0,0,1,
             1,1,1,1,1, 1,1,1,1,1
-    };
+    };*/
     private final int COL = 10;
 
     private ArFragment arFragment;
@@ -81,6 +80,9 @@ public class HelloSceneformActivity extends AppCompatActivity {
       }
       setContentView(R.layout.activity_ux);
       arFragment = (ArFragment) getSupportFragmentManager().findFragmentById(R.id.ux_fragment);
+
+      Intent intent = getIntent();
+      int[] grid = intent.getIntArrayExtra("gridValues");
 
       arFragment.setOnTapArPlaneListener((HitResult hitResult, Plane plane, MotionEvent motionEvent) -> {
           if (hasRendered) {
