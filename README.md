@@ -7,5 +7,5 @@ ARCore/Sceneform implementation of tAReign
 
 
 # Demo Preview
-!(screenshot1)[]
-!(screenshot2)[]
+![screenshot1](https://raw.githubusercontent.com/tAReign/tareign-android/master/Screenshot_20191203-225924_Hello%20Sceneform.jpg)
+![screenshot2](https://raw.githubusercontent.com/tAReign/tareign-android/master/Screenshot_20191203-225932_Hello%20Sceneform.jpg)
