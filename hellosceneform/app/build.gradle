@@ -60,3 +60,14 @@ sceneform.asset('sampledata/models/andy.obj',
         'default',
         'sampledata/models/andy.sfa',
         'src/main/res/raw/andy')
+
+
+sceneform.asset('sampledata/models/lowpolytree.obj',
+        'default',
+        'sampledata/models/lowpolytree.sfa',
+        'src/main/assets/lowpolytree')
+
+sceneform.asset('sampledata/models/lowpolytree.obj',
+        'default',
+        'sampledata/models/lowpolytree.sfa',
+        'src/main/res/raw/lowpolytree')

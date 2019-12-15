@@ -19,6 +19,7 @@ import android.app.Activity;
 import android.app.ActivityManager;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Build.VERSION_CODES;
 import android.os.Bundle;
@@ -47,6 +48,9 @@ public class HelloSceneformActivity extends AppCompatActivity {
     private static final String TAG = HelloSceneformActivity.class.getSimpleName();
     private static final double MIN_OPENGL_VERSION = 3.0;
 
+    private enum GridType {
+        FLOOR, WALL, TREE, BARREL;
+    }
     /*private int[] grid = {
             1,1,1,1,1, 1,1,1,1,1,
             1,0,0,0,0, 0,0,0,0,1,
@@ -59,11 +63,11 @@ public class HelloSceneformActivity extends AppCompatActivity {
             1,0,0,0,0, 0,0,0,0,1,
             1,1,1,1,1, 1,1,1,1,1
     };*/
-    private final int COL = 10;
 
     private ArFragment arFragment;
-    private boolean hasRendered = false;
+    private boolean hasRendered = false; // Set it to false to prevent creating multiple models
 
+    private final int COL = 10;
     private final float SIZE_SCALE = 1.5f;
     private final float CENTER_SCALE = 0.15f;
     private final float BASE_HEIGHT = 0.15f;
@@ -81,6 +85,7 @@ public class HelloSceneformActivity extends AppCompatActivity {
       setContentView(R.layout.activity_ux);
       arFragment = (ArFragment) getSupportFragmentManager().findFragmentById(R.id.ux_fragment);
 
+      // Get grid data from GridActivity scene
       Intent intent = getIntent();
       int[] grid = intent.getIntArrayExtra("gridValues");
 
@@ -104,14 +109,14 @@ public class HelloSceneformActivity extends AppCompatActivity {
               int x = (i % COL) - OFFSET;
               int z = (int) -Math.floor(i / COL) + OFFSET;
 
-              Node shapeNode = new Node();
-              shapeNode.setParent(planeNode);
-
               Vector3 center = new Vector3((float) x * CENTER_SCALE, BASE_HEIGHT, (float) z * CENTER_SCALE);
-              Vector3 base = new Vector3((float) x * CENTER_SCALE, BASE_HEIGHT, (float) z * CENTER_SCALE);
+              Vector3 base = new Vector3((float) x * CENTER_SCALE, 0.01f, (float) z * CENTER_SCALE);
 
               // Render floor
-              if (grid[i] == 0) {
+              if (grid[i] != GridType.WALL.ordinal()) {
+                  Node shapeNode = new Node();
+                  shapeNode.setParent(planeNode);
+
                   Texture.builder()
                           .setSource(getApplicationContext(), R.drawable.floor_texture)
                           .build()
@@ -128,7 +133,10 @@ public class HelloSceneformActivity extends AppCompatActivity {
               }
 
               // Render shapes
-              if (grid[i] == 1) {
+              Node shapeNode = new Node();
+              shapeNode.setParent(planeNode);
+
+              if (grid[i] == GridType.WALL.ordinal()) {
                   Texture.builder()
                           .setSource(getApplicationContext(), R.drawable.wall_texture)
                           .build()
@@ -141,7 +149,7 @@ public class HelloSceneformActivity extends AppCompatActivity {
                                           material));
                               });
                       });
-              } else if (grid[i] == 2) {
+              } else if (grid[i] == GridType.BARREL.ordinal()) {
                   Texture.builder()
                           .setSource(getApplicationContext(), R.drawable.barrel_texture)
                           .build()
@@ -149,16 +157,27 @@ public class HelloSceneformActivity extends AppCompatActivity {
                               MaterialFactory.makeOpaqueWithTexture(this, texture).thenAccept(
                                   material -> {
                                       shapeNode.setRenderable(ShapeFactory.makeCylinder(
-                                              0.07f * SIZE_SCALE,
+                                              0.05f * SIZE_SCALE,
                                               0.15f * SIZE_SCALE,
                                               center,
                                               material));
                                   });
                           });
 
+              } else if (grid[i] == GridType.TREE.ordinal()) {
+                  ModelRenderable.builder()
+                      // To load as an asset from the 'assets' folder ('src/main/assets/andy.sfb'):
+                      //.setSource(this, Uri.parse("andy.sfb"))
+                      .setSource(this, R.raw.lowpolytree)
+                      .build()
+                      .thenAccept(renderable -> {
+                          shapeNode.setRenderable(renderable);
+                          shapeNode.setLocalPosition(base);
+                          shapeNode.setLocalScale(new Vector3(0.2f,0.25f,0.2f));
+                      });
+
               }
           }
-
           planeNode.select();
         });
     }
