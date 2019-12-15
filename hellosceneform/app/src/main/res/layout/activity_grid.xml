@@ -4,69 +4,48 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.google.ar.sceneform.samples.hellosceneform.GridActivity"
+    tools:context="com.example.laithabad.tareigntest.MainActivity"
     android:weightSum="1"
     android:orientation="vertical"
-    android:gravity="center"
     >
-    <GridView
-        android:id="@+id/gridView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:numColumns="10"
-        android:layout_weight="0.41"
-        android:layout_marginTop="20dp"
-        >
-    </GridView>
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp">
-        <Button
-            android:id="@+id/floorButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text = "@string/floor"
-            />
-        <Button
-            android:id="@+id/wallButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text = "@string/wall"
-            />
-        <Button
-            android:id="@+id/treeButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text = "@string/tree"
-            />
-        <Button
-            android:id="@+id/barrelButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text = "@string/barrel"
-            />
-    </LinearLayout>
-    <LinearLayout
-        android:gravity="center"
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="60dp"
-        >
-        <Button
-            android:id="@+id/saveButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/save"
-            android:layout_marginRight="10dp"
-            />
-        <Button
-            android:id="@+id/renderButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/go_to_ar"
-            android:layout_marginLeft="10dp"
-            />
-    </LinearLayout>
+        android:text="@string/tareign"
+        android:textSize="45sp"
+        android:textAlignment="center"
+        android:textColor="#6200EE"
+        />
+    <TextView
+        android:layout_marginTop="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/build_your_own_terrain_and_project_onto_a_flat_surface"
+        android:textSize="25sp"
+        android:textAlignment="center"
+        android:textColor="#3700B3"
+        />
+    <Button
+        android:id="@+id/createButton"
+        android:layout_marginTop="30dp"
+        android:layout_gravity="center_horizontal|center_vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/create_a_new_grid"
+        android:background="#03DAC6"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        />
+    <Button
+        android:id="@+id/loadButton"
+        android:layout_marginTop="30dp"
+        android:layout_gravity="center_horizontal|center_vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/load_an_old_grid"
+        android:background="#018786"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        />
+
 </LinearLayout>
